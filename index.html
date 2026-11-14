@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc Mừng Sinh Nhật Bạn Khang 🛵🛵</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Quicksand hỗ trợ tiếng Việt có dấu tròn trịa -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        .font-display {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Tiêu đề màu xanh biển viền trắng sắc nét */
+        .title-blue-outline {
+            color: #0284c7;
+            -webkit-text-stroke: 2px #ffffff;
+            paint-order: stroke fill;
+            text-shadow:
+                -2px -2px 0 #ffffff,
+                 2px -2px 0 #ffffff,
+                -2px  2px 0 #ffffff,
+                 2px  2px 0 #ffffff,
+                 0px  3px 0 #ffffff,
+                 0px  6px 14px rgba(2, 132, 199, 0.35);
+        }
+
+        /* Nền trời pastel dễ thương */
+        .bg-cute-sky {
+            background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 48%, #fef9c3 100%);
+        }
+
+        /* Nền thiên nhiên hoa lá hẹ ở màn cuối */
+        .bg-nature-ending {
+            background: linear-gradient(180deg, #38bdf8 0%, #bae6fd 35%, #bbf7d0 72%, #22c55e 100%);
+        }
+
+        /* Hiệu ứng rung khi nhập sai pass */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        /* Hiệu ứng bồng bềnh nhẹ */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: floatSlow 3s ease-in-out infinite;
+        }
+
+        /* Hiệu ứng xuất hiện thẻ/màn hình */
+        @keyframes cardPop {
+            0% { opacity: 0; transform: scale(0.9) translateY(16px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-card-pop {
+            animation: cardPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Hiệu ứng đung đưa cây lá */
+        @keyframes sway {
+            0%, 100% { transform: rotate(-4deg); }
+            50% { transform: rotate(4deg); }
+        }
+        .animate-sway {
+            transform-origin: bottom center;
+            animation: sway 3.2s ease-in-out infinite;
+        }
+
+        /* Hiệu ứng bướm bay */
+        @keyframes flutter {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(15px, -18px) rotate(10deg); }
+            50% { transform: translate(30px, -6px) rotate(-6deg); }
+            75% { transform: translate(12px, -22px) rotate(8deg); }
+        }
+        .animate-flutter {
+            animation: flutter 5.5s ease-in-out infinite;
+        }
+
+        /* Hiệu ứng chữ bay lên khi ăn bánh hoặc hứng quà */
+        @keyframes popUpFade {
+            0% { opacity: 1; transform: translate(-50%, 0) scale(0.85); }
+            50% { opacity: 1; transform: translate(-50%, -32px) scale(1.15); }
+            100% { opacity: 0; transform: translate(-50%, -60px) scale(1); }
+        }
+        .toast-float {
+            position: absolute;
+            pointer-events: none;
+            animation: popUpFade 0.85s ease-out forwards;
+            z-index: 60;
+        }
+
+        /* Họa tiết bao bì 5 gói quà khác nhau */
+        .wrap-dots {
+            background-image: radial-gradient(rgba(255,255,255,0.45) 22%, transparent 22%);
+            background-size: 16px 16px;
+        }
+        .wrap-stripes {
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.22),
+                rgba(255,255,255,0.22) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+        .wrap-grid {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.3) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255,255,255,0.3) 2px, transparent 2px);
+            background-size: 18px 18px;
+        }
+        .wrap-waves {
+            background-image: radial-gradient(circle at 10px 10px, rgba(255,255,255,0.35) 3px, transparent 4px);
+            background-size: 20px 20px;
+        }
+        .wrap-diamonds {
+            background-image:
+                linear-gradient(135deg, rgba(255,255,255,0.25) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(255,255,255,0.25) 25%, transparent 25%);
+            background-size: 20px 20px;
+        }
+
+        /* Canvas pháo giấy toàn màn hình không cản click */
+        #confetti-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="bg-cute-sky min-h-screen flex flex-col items-center justify-center p-4 text-slate-800 relative">
+
+    <!-- Canvas hiệu ứng pháo giấy & hoa lá tự vẽ, pointer-events: none để không bao giờ che nút bấm -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- ==================== MÀN 0: MÀN HÌNH KHÓA MẬT KHẨU ==================== -->
+    <section id="screen-lock" class="relative z-20 w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-sky-300 p-5 sm:p-7 text-center animate-card-pop">
+        <div class="inline-block bg-sky-100 text-sky-700 font-bold px-4 py-1 rounded-full text-xs sm:text-sm mb-3 border border-sky-300">
+            🔒 Mật mã sinh nhật của bạn Khang
+        </div>
+
+        <!-- Khung trang trí pastel dễ thương với dòng chữ yêu cầu -->
+        <div class="relative mx-auto w-full rounded-3xl border-4 border-dashed border-amber-300 bg-gradient-to-br from-sky-100 via-pink-50 to-amber-100 p-4 shadow-md mb-4 animate-float">
+            <div class="flex justify-center items-center gap-2 text-3xl sm:text-4xl mb-1.5">
+                <!-- Icon mèo xanh Hachiware SVG tự vẽ sắc nét -->
+                <svg viewBox="0 0 64 64" class="w-11 h-11 inline-block drop-shadow-sm">
+                    <path d="M12,24 L16,6 L28,18 Z" fill="#38bdf8" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                    <path d="M52,24 L48,6 L36,18 Z" fill="#38bdf8" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                    <ellipse cx="32" cy="36" rx="24" ry="21" fill="#ffffff" stroke="#1e293b" stroke-width="3"/>
+                    <path d="M10,30 Q20,16 32,24 Q44,16 54,30 Q48,15 32,15 Q16,15 10,30 Z" fill="#38bdf8"/>
+                    <circle cx="23" cy="35" r="2.8" fill="#1e293b"/>
+                    <circle cx="41" cy="35" r="2.8" fill="#1e293b"/>
+                    <ellipse cx="17" cy="40" rx="3.5" ry="2" fill="#fda4af"/>
+                    <ellipse cx="47" cy="40" rx="3.5" ry="2" fill="#fda4af"/>
+                    <path d="M28,41 Q32,45 36,41" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span>🧀</span>
+                <span>✨</span>
+            </div>
+            <p class="font-display text-xl sm:text-2xl font-bold text-pink-500 leading-snug">
+                Bạn Khang cute phô mai que áh~
+            </p>
+            <div class="mt-1.5 inline-block bg-white/85 px-3 py-0.5 rounded-full text-xs font-bold text-sky-600 border border-sky-200">
+                🐾 Nhập pass 4 số để nhận quà nha 🐾
+            </div>
+        </div>
+
+        <!-- Ô nhập mật khẩu hỗ trợ cả gõ bàn phím và bấm phím ảo -->
+        <div class="mb-3">
+            <label for="pass-input" class="block text-xs font-bold text-slate-500 mb-1.5">
+                Gợi ý: Ngày sinh nhật của Khang (4 chữ số) 🎂
+            </label>
+            <input
+                type="tel"
+                id="pass-input"
+                maxlength="4"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="• • • •"
+                class="relative z-30 pointer-events-auto w-full text-center text-3xl tracking-[0.5em] font-display font-bold py-2.5 px-4 rounded-2xl border-3 border-2 border-sky-400 focus:border-blue-600 focus:outline-none bg-sky-50 text-sky-900 placeholder:text-sky-300 placeholder:tracking-[0.35em]"
+            >
+        </div>
+
+        <!-- Thông báo trêu chọc khi nhập sai -->
+        <p id="pass-error" class="text-rose-500 font-bold text-xs sm:text-sm min-h-[20px] mb-2 hidden"></p>
+
+        <!-- Bàn phím số ảo 0-9 dễ thương để bấm mượt trên mọi thiết bị -->
+        <div id="virtual-keypad" class="grid grid-cols-3 gap-2 max-w-[270px] mx-auto mb-4 relative z-30 pointer-events-auto">
+            <button type="button" data-key="1" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">1</button>
+            <button type="button" data-key="2" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">2</button>
+            <button type="button" data-key="3" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">3</button>
+            <button type="button" data-key="4" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">4</button>
+            <button type="button" data-key="5" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">5</button>
+            <button type="button" data-key="6" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">6</button>
+            <button type="button" data-key="7" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">7</button>
+            <button type="button" data-key="8" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">8</button>
+            <button type="button" data-key="9" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">9</button>
+            <button type="button" id="keypad-clear" class="py-2.5 rounded-xl bg-rose-100 hover:bg-rose-200 active:scale-95 font-display font-bold text-sm text-rose-600 shadow-sm border border-rose-200 cursor-pointer">Xóa hết</button>
+            <button type="button" data-key="0" class="keypad-btn py-2.5 rounded-xl bg-sky-100 hover:bg-sky-200 active:scale-95 font-display font-bold text-xl text-sky-800 shadow-sm border border-sky-200 cursor-pointer">0</button>
+            <button type="button" id="keypad-back" class="py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 active:scale-95 font-display font-bold text-base text-amber-700 shadow-sm border border-amber-200 cursor-pointer">⌫</button>
+        </div>
+
+        <!-- Nút Mở khóa chính -->
+        <button
+            type="button"
+            id="btn-unlock"
+            class="relative z-30 pointer-events-auto w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 active:scale-95 text-white font-display font-bold text-lg shadow-lg shadow-sky-300/60 transition-all cursor-pointer"
+        >
+            Mở khóa 🔓
+        </button>
+    </section>
+
+    <!-- ==================== MÀN HÌNH CHÍNH (MENU 3 MÓN QUÀ) ==================== -->
+    <section id="screen-main" class="hidden relative z-20 w-full max-w-2xl text-center animate-card-pop">
+        <div class="mb-6 animate-float">
+            <span class="inline-block bg-white/85 backdrop-blur px-4 py-1 rounded-full text-sky-700 font-bold text-xs sm:text-sm mb-3 shadow-sm border border-sky-200">
+                🎉 Chào mừng tuổi 14 cực cháy 🎉
+            </span>
+            <h1 class="font-display text-3xl sm:text-5xl font-bold title-blue-outline leading-tight px-2">
+                Chúc mừng sinh nhật bạn Khang 🛵🛵
+            </h1>
+        </div>
+
+        <p class="text-slate-700 font-semibold text-sm sm:text-base mb-6 bg-white/80 inline-block px-5 py-2 rounded-2xl shadow-sm border border-sky-100">
+            Bấm mở hết 3 mục bên dưới để mở khóa thử thách cuối nha! 👇
+        </p>
+
+        <!-- 3 Nút chính -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-7">
+            <!-- Nút 1: Thiệp chúc -->
+            <button
+                type="button"
+                id="menu-btn-card"
+                class="group relative bg-white hover:bg-rose-50 border-4 border-rose-300 rounded-3xl p-6 shadow-xl hover:-translate-y-1.5 active:scale-95 transition-all cursor-pointer flex flex-col items-center"
+            >
+                <span id="badge-card" class="hidden absolute -top-3 -right-3 w-9 h-9 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md border-2 border-white">
+                    ✓
+                </span>
+                <div class="text-5xl sm:text-6xl mb-3 group-hover:scale-110 transition-transform">💌</div>
+                <span class="font-display text-xl font-bold text-rose-600">💌 Thiệp chúc</span>
+                <span class="text-xs text-slate-500 mt-1 font-medium">Lời nhắn nhủ tâm huyết</span>
+            </button>
+
+            <!-- Nút 2: Bánh kem -->
+            <button
+                type="button"
+                id="menu-btn-cake"
+                class="group relative bg-white hover:bg-amber-50 border-4 border-amber-300 rounded-3xl p-6 shadow-xl hover:-translate-y-1.5 active:scale-95 transition-all cursor-pointer flex flex-col items-center"
+            >
+                <span id="badge-cake" class="hidden absolute -top-3 -right-3 w-9 h-9 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md border-2 border-white">
+                    ✓
+                </span>
+                <div class="text-5xl sm:text-6xl mb-3 group-hover:scale-110 transition-transform">🎂</div>
+                <span class="font-display text-xl font-bold text-amber-600">🎂 Bánh kem</span>
+                <span class="text-xs text-slate-500 mt-1 font-medium">Bấm vào để măm măm</span>
+            </button>
+
+            <!-- Nút 3: Hộp quà -->
+            <button
+                type="button"
+                id="menu-btn-gifts"
+                class="group relative bg-white hover:bg-indigo-50 border-4 border-indigo-300 rounded-3xl p-6 shadow-xl hover:-translate-y-1.5 active:scale-95 transition-all cursor-pointer flex flex-col items-center"
+            >
+                <span id="badge-gifts" class="hidden absolute -top-3 -right-3 w-9 h-9 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md border-2 border-white">
+                    ✓
+                </span>
+                <div class="text-5xl sm:text-6xl mb-3 group-hover:scale-110 transition-transform">🎁</div>
+                <span class="font-display text-xl font-bold text-indigo-600">🎁 Hộp quà</span>
+                <span class="text-xs text-slate-500 mt-1 font-medium">5 gói quà bất ngờ</span>
+            </button>
+        </div>
+
+        <!-- Thanh tiến độ -->
+        <div class="max-w-md mx-auto bg-white/85 rounded-2xl p-3.5 shadow-sm border border-sky-200 mb-6">
+            <div class="flex justify-between text-xs font-bold text-sky-800 mb-1.5 px-1">
+                <span>Tiến độ khám phá quà</span>
+                <span id="progress-text">0 / 3 hoàn thành</span>
+            </div>
+            <div class="w-full bg-sky-100 h-3 rounded-full overflow-hidden">
+                <div id="progress-bar" class="bg-gradient-to-r from-sky-400 to-emerald-400 h-full w-0 transition-all duration-500 rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Nút mở khóa Minigame khi hoàn thành cả 3 mục -->
+        <div id="minigame-unlock-box" class="hidden animate-card-pop">
+            <button
+                type="button"
+                id="btn-open-minigame"
+                class="py-4 px-7 rounded-full bg-gradient-to-r from-amber-500 via-pink-500 to-indigo-500 hover:from-amber-600 hover:to-indigo-600 active:scale-95 text-white font-display font-bold text-base sm:text-xl shadow-2xl shadow-pink-400/50 border-4 border-white animate-bounce cursor-pointer"
+            >
+                🎮 Thử thách Hứng Aura & Robux tuổi 14
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== MÀN 1: THIỆP CHÚC ==================== -->
+    <section id="screen-card" class="hidden relative z-20 w-full max-w-xl animate-card-pop">
+        <div class="bg-gradient-to-br from-rose-50 via-white to-pink-50 border-4 border-rose-300 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-5 -right-5 text-7xl opacity-20 rotate-12 pointer-events-none">🌸</div>
+            <div class="absolute -bottom-5 -left-5 text-7xl opacity-20 -rotate-12 pointer-events-none">💌</div>
+
+            <div class="text-center mb-5">
+                <span class="inline-block bg-rose-100 text-rose-600 font-bold px-4 py-1 rounded-full text-sm border border-rose-200">
+                    💌 Thiệp Chúc Mừng Sinh Nhật
+                </span>
+            </div>
+
+            <div class="bg-white/95 border-2 border-dashed border-rose-300 rounded-2xl p-5 sm:p-7 shadow-inner text-left leading-relaxed text-slate-700 text-base sm:text-lg font-medium space-y-4">
+                <p>
+                    Chúc mừng sinh nhật bạn Khang nhak, bạn tuổi mới đầy sức khoẻ, may mắn, hạnh phúc và đạt được nhiều thành tích trong học tập, có nhiều tiền nạp gemk. Web này tui làm có hơi si đa nhưng là tấm lòng của tui nên mong bạn vẫn sẽ thích. Và lần nữa chúc bạn tuổi 14 rực rỡ, mong bọn mình sẽ là bạn của nhau lâu nhất có thể.
+                </p>
+                <div class="text-right font-display text-rose-500 font-bold pt-2">
+                    — Từ đứa bạn thân của bạn 🛵✨
+                </div>
+            </div>
+
+            <div class="mt-7 text-center">
+                <button
+                    type="button"
+                    class="btn-back-menu py-3 px-7 rounded-2xl bg-rose-500 hover:bg-rose-600 active:scale-95 text-white font-display font-bold text-base sm:text-lg shadow-lg shadow-rose-300 transition-all cursor-pointer"
+                >
+                    Quay lại các món quà.
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MÀN 2: BÁNH KEM DÂU TÂY ==================== -->
+    <section id="screen-cake" class="hidden relative z-20 w-full max-w-xl animate-card-pop text-center">
+        <div class="bg-white/95 border-4 border-amber-300 rounded-3xl p-5 sm:p-8 shadow-2xl relative overflow-hidden">
+            <span class="inline-block bg-amber-100 text-amber-700 font-bold px-4 py-1 rounded-full text-sm border border-amber-200 mb-3">
+                🍓 Bánh Kem Dâu Tây Siêu Ngon
+            </span>
+
+            <h2 id="cake-instruction" class="font-display text-xl sm:text-2xl font-bold text-amber-700 mb-1">
+                Bấm vào bánh kem để ăn từng miếng nha! 😋
+            </h2>
+            <p id="cake-counter" class="text-sm text-slate-500 font-semibold mb-3">
+                Còn lại: <span id="slices-left-num" class="text-rose-500 font-bold">5</span> miếng bánh
+            </p>
+
+            <!-- Khu vực bánh kem SVG trên đĩa & nĩa -->
+            <div id="cake-stage" class="relative w-full h-72 sm:h-80 flex items-center justify-center my-2 cursor-pointer rounded-2xl bg-amber-50/50 border-2 border-amber-100">
+                <svg id="strawberry-cake-svg" viewBox="0 0 360 300" class="w-full max-w-[330px] h-auto drop-shadow-xl transition-transform active:scale-95">
+                    <!-- Đĩa sứ trắng viền xanh -->
+                    <ellipse cx="180" cy="245" rx="155" ry="36" fill="#cbd5e1" />
+                    <ellipse cx="180" cy="240" rx="150" ry="33" fill="#ffffff" stroke="#38bdf8" stroke-width="3" />
+                    <ellipse cx="180" cy="240" rx="115" ry="22" fill="none" stroke="#bae6fd" stroke-width="2" />
+
+                    <!-- Chiếc nĩa bạc đặt cạnh đĩa -->
+                    <g transform="translate(278, 192) rotate(22)">
+                        <rect x="6" y="30" width="6" height="65" rx="3" fill="#64748b" />
+                        <path d="M2,0 L2,25 Q2,32 9,32 Q16,32 16,25 L16,0 L13,0 L13,20 L10.5,20 L10.5,0 L7.5,0 L7.5,20 L5,20 L5,0 Z" fill="#94a3b8" />
+                    </g>
+
+                    <!-- MIẾNG 1: Đế bánh bông lan dưới cùng -->
+                    <g id="cake-slice-1" class="transition-all duration-300">
+                        <path d="M75,185 L75,228 Q180,255 285,228 L285,185 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+                        <path d="M75,203 Q180,228 285,203 L285,212 Q180,237 75,212 Z" fill="#fb7185" />
+                    </g>
+
+                    <!-- MIẾNG 2: Thân bánh kem trắng phủ chảy -->
+                    <g id="cake-slice-2" class="transition-all duration-300">
+                        <path d="M75,145 L75,188 Q180,215 285,188 L285,145 Z" fill="#fff1f2" stroke="#fda4af" stroke-width="2" />
+                        <path d="M75,145 Q90,175 105,152 Q120,180 138,155 Q158,185 180,158 Q202,185 222,155 Q240,180 255,152 Q270,175 285,145 Z" fill="#ffffff" />
+                    </g>
+
+                    <!-- MIẾNG 3: Mặt bánh & viền kem bắt bông -->
+                    <g id="cake-slice-3" class="transition-all duration-300">
+                        <ellipse cx="180" cy="145" rx="105" ry="26" fill="#ffffff" stroke="#fecdd3" stroke-width="2" />
+                        <circle cx="90" cy="145" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                        <circle cx="118" cy="157" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                        <circle cx="150" cy="164" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                        <circle cx="180" cy="166" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                        <circle cx="210" cy="164" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                        <circle cx="242" cy="157" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                        <circle cx="270" cy="145" r="9" fill="#fff" stroke="#fda4af" stroke-width="1.5" />
+                    </g>
+
+                    <!-- MIẾNG 4: Dâu tây tươi trang trí -->
+                    <g id="cake-slice-4" class="transition-all duration-300">
+                        <g transform="translate(115, 122)">
+                            <path d="M12,24 C2,18 0,6 12,6 C24,6 22,18 12,24 Z" fill="#e11d48" />
+                            <path d="M6,6 L12,10 L18,6 L14,2 L10,2 Z" fill="#16a34a" />
+                            <circle cx="9" cy="12" r="1" fill="#fef08a" />
+                            <circle cx="15" cy="13" r="1" fill="#fef08a" />
+                            <circle cx="12" cy="17" r="1" fill="#fef08a" />
+                        </g>
+                        <g transform="translate(220, 122)">
+                            <path d="M12,24 C2,18 0,6 12,6 C24,6 22,18 12,24 Z" fill="#e11d48" />
+                            <path d="M6,6 L12,10 L18,6 L14,2 L10,2 Z" fill="#16a34a" />
+                            <circle cx="9" cy="12" r="1" fill="#fef08a" />
+                            <circle cx="15" cy="13" r="1" fill="#fef08a" />
+                            <circle cx="12" cy="17" r="1" fill="#fef08a" />
+                        </g>
+                        <g transform="translate(166, 128)">
+                            <path d="M14,28 C2,21 0,7 14,7 C28,7 26,21 14,28 Z" fill="#f43f5e" />
+                            <path d="M7,7 L14,12 L21,7 L16,2 L12,2 Z" fill="#22c55e" />
+                            <circle cx="11" cy="14" r="1.2" fill="#fef08a" />
+                            <circle cx="17" cy="15" r="1.2" fill="#fef08a" />
+                            <circle cx="14" cy="20" r="1.2" fill="#fef08a" />
+                        </g>
+                    </g>
+
+                    <!-- MIẾNG 5: Ngọn nến lung linh trên đỉnh -->
+                    <g id="cake-slice-5" class="transition-all duration-300">
+                        <rect x="174" y="82" width="12" height="44" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5" />
+                        <path d="M174,92 L186,98 M174,104 L186,110 M174,116 L186,122" stroke="#ffffff" stroke-width="3" />
+                        <path d="M180,55 Q190,70 180,80 Q170,70 180,55 Z" fill="#f59e0b">
+                            <animate attributeName="d" values="M180,55 Q190,70 180,80 Q170,70 180,55 Z; M180,52 Q192,69 180,80 Q168,69 180,52 Z; M180,55 Q190,70 180,80 Q170,70 180,55 Z" dur="0.8s" repeatCount="indefinite" />
+                        </path>
+                        <circle cx="180" cy="72" r="3.5" fill="#fef08a" />
+                    </g>
+                </svg>
+
+                <!-- Banner hoa lá nở rộ khi ăn hết bánh -->
+                <div id="cake-finished-banner" class="hidden absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-emerald-50/95 via-white/95 to-pink-50/95 rounded-2xl p-4 animate-card-pop border-2 border-emerald-300">
+                    <div class="text-4xl sm:text-5xl mb-2 animate-bounce">🌸🌺🌻🌷🌼🌿</div>
+                    <h3 class="font-display text-3xl sm:text-4xl font-bold text-emerald-600 mb-2">
+                        Bé trai ăn giỏi quá!
+                    </h3>
+                    <p class="text-slate-600 text-sm sm:text-base font-semibold">
+                        Ăn hết sạch chiếc bánh kem dâu tây luôn rồi! 👏✨
+                    </p>
+                    <div class="text-3xl mt-2">🍃🌸🦋🌼🍃</div>
+                </div>
+            </div>
+
+            <div class="mt-5 flex flex-wrap justify-center gap-3">
+                <button
+                    type="button"
+                    id="btn-reset-cake"
+                    class="hidden py-2.5 px-5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold text-sm transition-all cursor-pointer"
+                >
+                    Ăn thêm cái nữa 🍰
+                </button>
+                <button
+                    type="button"
+                    class="btn-back-menu py-3 px-7 rounded-2xl bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-display font-bold text-base sm:text-lg shadow-lg shadow-amber-300 transition-all cursor-pointer"
+                >
+                    Quay lại các món quà.
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MÀN 3: 5 GÓI QUÀ BẤT NGỜ ==================== -->
+    <section id="screen-gifts" class="hidden relative z-20 w-full max-w-3xl animate-card-pop text-center">
+        <div class="bg-white/95 border-4 border-indigo-300 rounded-3xl p-5 sm:p-8 shadow-2xl">
+            <span class="inline-block bg-indigo-100 text-indigo-700 font-bold px-4 py-1 rounded-full text-sm border border-indigo-200 mb-2">
+                🎁 5 Gói Quà Bí Mật
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-indigo-700 mb-1">
+                Bấm mở từng gói quà xem có gì bên trong nhé!
+            </h2>
+            <p id="gifts-status" class="text-sm text-slate-500 font-semibold mb-6">
+                Đã mở: <span id="gifts-opened-num" class="text-indigo-600 font-bold">0</span> / 5 gói quà
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 mb-7">
+                <!-- GÓI 1: BÚP BÊ (Hồng chấm bi + nơ vàng) -->
+                <div data-gift="1" class="gift-card relative rounded-2xl p-4 min-h-[195px] flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-lg border-4 border-pink-400 bg-pink-500 wrap-dots text-white">
+                    <div class="gift-cover flex flex-col items-center">
+                        <div class="text-4xl mb-1 drop-shadow">🎀</div>
+                        <div class="w-12 h-2 bg-yellow-300 rounded-full mb-2"></div>
+                        <span class="font-display font-bold text-lg bg-white/25 px-3 py-0.5 rounded-full">Gói số 1</span>
+                        <span class="text-xs mt-1 opacity-95">Bấm để mở quà</span>
+                    </div>
+                    <div class="gift-content hidden flex-col items-center justify-center bg-white text-slate-800 w-full h-full rounded-xl p-3 animate-card-pop">
+                        <svg viewBox="0 0 100 100" class="w-20 h-20 mb-1">
+                            <circle cx="26" cy="45" r="11" fill="#78350f" />
+                            <circle cx="74" cy="45" r="11" fill="#78350f" />
+                            <circle cx="50" cy="40" r="20" fill="#fde68a" />
+                            <path d="M30,38 Q50,15 70,38 Q60,28 50,34 Q40,28 30,38 Z" fill="#78350f" />
+                            <circle cx="43" cy="41" r="2.5" fill="#1e293b" />
+                            <circle cx="57" cy="41" r="2.5" fill="#1e293b" />
+                            <circle cx="38" cy="46" r="3" fill="#fda4af" />
+                            <circle cx="62" cy="46" r="3" fill="#fda4af" />
+                            <path d="M46,48 Q50,52 54,48" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" />
+                            <path d="M38,60 L62,60 L74,88 L26,88 Z" fill="#f472b6" />
+                            <path d="M38,60 L62,60 L58,70 L42,70 Z" fill="#fbcfe8" />
+                        </svg>
+                        <span class="font-display font-bold text-pink-600 text-base">Búp bê</span>
+                        <span class="text-[11px] text-slate-500">Xinh xỉu luôn nha!</span>
+                    </div>
+                </div>
+
+                <!-- GÓI 2: XE TĂNG (Xanh rêu kẻ sọc + nơ cam) -->
+                <div data-gift="2" class="gift-card relative rounded-2xl p-4 min-h-[195px] flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-lg border-4 border-emerald-600 bg-emerald-700 wrap-stripes text-white">
+                    <div class="gift-cover flex flex-col items-center">
+                        <div class="text-4xl mb-1 drop-shadow">🎗️</div>
+                        <div class="w-12 h-2 bg-orange-400 rounded-full mb-2"></div>
+                        <span class="font-display font-bold text-lg bg-white/25 px-3 py-0.5 rounded-full">Gói số 2</span>
+                        <span class="text-xs mt-1 opacity-95">Bấm để mở quà</span>
+                    </div>
+                    <div class="gift-content hidden flex-col items-center justify-center bg-white text-slate-800 w-full h-full rounded-xl p-3 animate-card-pop">
+                        <svg viewBox="0 0 120 90" class="w-24 h-20 mb-1">
+                            <rect x="65" y="28" width="42" height="8" rx="3" fill="#365314" />
+                            <rect x="102" y="26" width="8" height="12" rx="2" fill="#1a2e05" />
+                            <path d="M35,42 L45,24 L75,24 L82,42 Z" fill="#4d7c0f" />
+                            <rect x="20" y="42" width="80" height="18" rx="6" fill="#65a30d" />
+                            <polygon points="58,45 60,50 65,50 61,53 62,58 58,55 54,58 55,53 51,50 56,50" fill="#facc15" />
+                            <rect x="16" y="58" width="88" height="20" rx="10" fill="#1e293b" />
+                            <circle cx="28" cy="68" r="6" fill="#94a3b8" />
+                            <circle cx="48" cy="68" r="6" fill="#94a3b8" />
+                            <circle cx="68" cy="68" r="6" fill="#94a3b8" />
+                            <circle cx="88" cy="68" r="6" fill="#94a3b8" />
+                        </svg>
+                        <span class="font-display font-bold text-emerald-700 text-base">Xe tăng</span>
+                        <span class="text-[11px] text-slate-500">Chiến đét tuổi 14!</span>
+                    </div>
+                </div>
+
+                <!-- GÓI 3: NGÔI NHÀ MÀU HỒNG (Tím kẻ caro + nơ hồng) -->
+                <div data-gift="3" class="gift-card relative rounded-2xl p-4 min-h-[195px] flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-lg border-4 border-purple-400 bg-purple-500 wrap-grid text-white">
+                    <div class="gift-cover flex flex-col items-center">
+                        <div class="text-4xl mb-1 drop-shadow">🎀</div>
+                        <div class="w-12 h-2 bg-pink-300 rounded-full mb-2"></div>
+                        <span class="font-display font-bold text-lg bg-white/25 px-3 py-0.5 rounded-full">Gói số 3</span>
+                        <span class="text-xs mt-1 opacity-95">Bấm để mở quà</span>
+                    </div>
+                    <div class="gift-content hidden flex-col items-center justify-center bg-white text-slate-800 w-full h-full rounded-xl p-3 animate-card-pop">
+                        <svg viewBox="0 0 100 100" class="w-20 h-20 mb-1">
+                            <rect x="65" y="20" width="10" height="18" fill="#db2777" />
+                            <polygon points="50,15 15,48 85,48" fill="#ec4899" stroke="#be185d" stroke-width="2" />
+                            <rect x="23" y="48" width="54" height="40" rx="3" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+                            <rect x="42" y="62" width="16" height="26" rx="2" fill="#f43f5e" />
+                            <circle cx="54" cy="75" r="1.5" fill="#fef08a" />
+                            <rect x="28" y="55" width="10" height="10" rx="1" fill="#bae6fd" stroke="#fff" stroke-width="1.5" />
+                            <rect x="62" y="55" width="10" height="10" rx="1" fill="#bae6fd" stroke="#fff" stroke-width="1.5" />
+                        </svg>
+                        <span class="font-display font-bold text-pink-500 text-sm sm:text-base">Ngôi nhà màu hồng</span>
+                        <span class="text-[11px] text-slate-500">Biệt thự mộng mơ!</span>
+                    </div>
+                </div>
+
+                <!-- GÓI 4: BẢNG TUẦN HOÀN HOÁ HỌC (Xanh dương chấm tròn + nơ trắng) -->
+                <div data-gift="4" class="gift-card relative rounded-2xl p-4 min-h-[195px] flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-lg border-4 border-sky-400 bg-sky-500 wrap-waves text-white">
+                    <div class="gift-cover flex flex-col items-center">
+                        <div class="text-4xl mb-1 drop-shadow">🎁</div>
+                        <div class="w-12 h-2 bg-white rounded-full mb-2"></div>
+                        <span class="font-display font-bold text-lg bg-white/25 px-3 py-0.5 rounded-full">Gói số 4</span>
+                        <span class="text-xs mt-1 opacity-95">Bấm để mở quà</span>
+                    </div>
+                    <div class="gift-content hidden flex-col items-center justify-center bg-white text-slate-800 w-full h-full rounded-xl p-2.5 animate-card-pop">
+                        <div class="grid grid-cols-5 gap-1 w-full max-w-[145px] mb-1.5 text-[9px] font-bold text-white">
+                            <div class="bg-rose-500 rounded p-1">1<br>H</div>
+                            <div class="col-span-3"></div>
+                            <div class="bg-purple-500 rounded p-1">2<br>He</div>
+                            <div class="bg-amber-500 rounded p-1">3<br>Li</div>
+                            <div class="bg-yellow-500 rounded p-1">4<br>Be</div>
+                            <div class="bg-teal-500 rounded p-1">6<br>C</div>
+                            <div class="bg-sky-500 rounded p-1">7<br>N</div>
+                            <div class="bg-indigo-500 rounded p-1">8<br>O</div>
+                            <div class="bg-amber-500 rounded p-1">47<br>Ag</div>
+                            <div class="bg-yellow-500 rounded p-1">79<br>Au</div>
+                            <div class="bg-emerald-500 rounded p-1">13<br>Al</div>
+                            <div class="bg-sky-500 rounded p-1">16<br>S</div>
+                            <div class="bg-pink-500 rounded p-1">17<br>Cl</div>
+                        </div>
+                        <span class="font-display font-bold text-sky-700 text-xs sm:text-sm leading-tight">Bảng tuần hoàn hoá học</span>
+                        <span class="text-[11px] text-slate-500">Học thuộc lấy 10 điểm Hóa!</span>
+                    </div>
+                </div>
+
+                <!-- GÓI 5: CARD ROBLOX "FAM AURA." (Vàng cam kim cương + nơ đỏ) -->
+                <div data-gift="5" class="gift-card col-span-2 sm:col-span-2 relative rounded-2xl p-4 min-h-[195px] flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-[1.02] active:scale-95 shadow-lg border-4 border-amber-400 bg-gradient-to-r from-amber-500 to-orange-500 wrap-diamonds text-white">
+                    <div class="gift-cover flex flex-col items-center">
+                        <div class="text-4xl mb-1 drop-shadow">👑</div>
+                        <div class="w-16 h-2 bg-rose-500 rounded-full mb-2"></div>
+                        <span class="font-display font-bold text-lg bg-white/25 px-4 py-0.5 rounded-full">Gói đặc biệt số 5</span>
+                        <span class="text-xs mt-1 opacity-95">Bấm để mở trùm cuối!</span>
+                    </div>
+                    <div class="gift-content hidden flex-col items-center justify-between bg-slate-900 text-white w-full h-full rounded-xl p-3 animate-card-pop border border-slate-700">
+                        <!-- Thanh header story -->
+                        <div class="w-full flex items-center justify-between text-[11px] text-slate-300 mb-1.5">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-5 h-5 rounded-full bg-slate-600 inline-flex items-center justify-center text-[10px]">🥷</span>
+                                <span class="font-bold text-white">Hisokaitachi Hi...</span>
+                                <span class="text-slate-400">10 phút</span>
+                            </div>
+                            <span class="text-slate-400">🔊 •••</span>
+                        </div>
+
+                        <!-- Khung cảnh Roblox "Fam aura." sắc nét tự vẽ -->
+                        <div class="w-full rounded-lg bg-gradient-to-b from-slate-600 via-sky-700 to-emerald-600 p-2 relative overflow-hidden border border-slate-500">
+                            <p class="font-display font-bold text-xl sm:text-2xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] tracking-wide mb-1">
+                                Fam aura.
+                            </p>
+                            <svg viewBox="0 0 220 85" class="w-full max-w-[240px] h-20 mx-auto">
+                                <!-- Biển và bãi cỏ -->
+                                <rect x="0" y="45" width="220" height="18" fill="#0284c7" />
+                                <polygon points="30,63 190,63 220,85 0,85" fill="#22c55e" />
+                                <!-- Khối đá bay xung quanh (Aura) -->
+                                <rect x="25" y="18" width="14" height="12" fill="#94a3b8" transform="rotate(-18 25 18)" />
+                                <rect x="172" y="14" width="16" height="12" fill="#cbd5e1" transform="rotate(24 172 14)" />
+                                <rect x="188" y="38" width="14" height="10" fill="#64748b" transform="rotate(-12 188 38)" />
+                                <rect x="42" y="42" width="12" height="9" fill="#475569" transform="rotate(30 42 42)" />
+                                <!-- Chiếc ghế xám -->
+                                <rect x="92" y="34" width="7" height="38" fill="#94a3b8" />
+                                <rect x="92" y="52" width="24" height="6" fill="#cbd5e1" />
+                                <rect x="110" y="52" width="6" height="20" fill="#64748b" />
+                                <!-- Nhân vật Roblox ngầu lòi ngồi ghế -->
+                                <rect x="100" y="24" width="14" height="14" rx="2" fill="#0f172a" />
+                                <rect x="98" y="38" width="17" height="16" fill="#1e293b" />
+                                <path d="M82,50 L124,44" stroke="#000000" stroke-width="3.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
+
+                        <!-- 3 nút reaction đặc trưng -->
+                        <div class="flex gap-2 mt-2 text-[11px] font-bold">
+                            <span class="bg-slate-700/90 px-2.5 py-1 rounded-full text-slate-200">Đỉnh thật</span>
+                            <span class="bg-slate-700/90 px-2.5 py-1 rounded-full text-slate-200">Đỉnh cao</span>
+                            <span class="bg-slate-700/90 px-2.5 py-1 rounded-full text-slate-200">Cháy thế</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="btn-back-menu py-3 px-7 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-display font-bold text-base sm:text-lg shadow-lg shadow-indigo-300 transition-all cursor-pointer"
+            >
+                Quay lại các món quà.
+            </button>
+        </div>
+    </section>
+
+    <!-- ==================== MÀN 4: MINIGAME HỨNG AURA & ROBUX TUỔI 14 ==================== -->
+    <section id="screen-minigame" class="hidden relative z-20 w-full max-w-xl animate-card-pop text-center">
+        <div class="bg-white/95 border-4 border-sky-400 rounded-3xl p-4 sm:p-6 shadow-2xl relative overflow-hidden">
+            <span class="inline-block bg-amber-100 text-amber-700 font-bold px-4 py-1 rounded-full text-xs sm:text-sm border border-amber-300 mb-1.5">
+                🎮 Thử Thách Tuổi 14 Cực Cháy
+            </span>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-sky-700 mb-1">
+                Hứng Aura & Robux Tuổi 14! 💎
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium mb-3">
+                Kéo chuột, chạm sân chơi hoặc bấm nút Trái/Phải để hứng quà (né bom 💣)!
+            </p>
+
+            <!-- Bảng điểm & Thời gian 15 giây -->
+            <div class="flex justify-between items-center bg-sky-50 border-2 border-sky-200 rounded-2xl px-4 py-2 mb-3 font-display font-bold">
+                <div class="text-amber-600 text-base sm:text-lg">
+                    Aura: <span id="game-score" class="text-xl">0</span> điểm
+                </div>
+                <div class="text-rose-500 text-base sm:text-lg">
+                    Thời gian: <span id="game-timer" class="text-xl">15</span>s
+                </div>
+            </div>
+
+            <!-- Sân chơi Canvas -->
+            <div id="game-container" class="relative w-full h-72 sm:h-80 rounded-2xl overflow-hidden border-4 border-sky-300 bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-100 touch-none select-none">
+                <canvas id="aura-game-canvas" class="w-full h-full block"></canvas>
+
+                <!-- Lớp phủ bắt đầu / kết thúc game -->
+                <div id="game-overlay" class="absolute inset-0 bg-slate-900/75 backdrop-blur-sm flex flex-col items-center justify-center p-5 text-white z-10">
+                    <div id="game-overlay-icon" class="text-5xl mb-2 animate-bounce">🐱💎</div>
+                    <h3 id="game-overlay-title" class="font-display text-2xl sm:text-3xl font-bold text-amber-300 mb-2">
+                        Sẵn sàng săn Aura chưa?
+                    </h3>
+                    <p id="game-overlay-desc" class="text-sm text-sky-100 mb-5 max-w-xs">
+                        Hứng Kim cương xanh, Điểm 10 Hóa học và Cỏ 4 lá trong 15 giây để tích lũy Aura tuổi 14!
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button
+                            type="button"
+                            id="btn-start-game"
+                            class="py-3 px-6 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 active:scale-95 text-slate-900 font-display font-bold text-base sm:text-lg shadow-lg cursor-pointer"
+                        >
+                            Bắt đầu chơi! 🚀
+                        </button>
+                        <button
+                            type="button"
+                            id="btn-to-ending"
+                            class="hidden py-3 px-6 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 active:scale-95 text-white font-display font-bold text-base sm:text-lg shadow-lg border-2 border-white animate-bounce cursor-pointer"
+                        >
+                            Tiếp tục tới đoạn kết →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nút điều khiển Trái / Phải hỗ trợ chạm tay cực nhạy -->
+            <div class="grid grid-cols-2 gap-3 mt-3">
+                <button
+                    type="button"
+                    id="btn-move-left"
+                    class="py-3 rounded-2xl bg-sky-100 hover:bg-sky-200 active:bg-sky-300 font-display font-bold text-lg text-sky-800 border-2 border-sky-300 cursor-pointer"
+                >
+                    ⬅️ Sang trái
+                </button>
+                <button
+                    type="button"
+                    id="btn-move-right"
+                    class="py-3 rounded-2xl bg-sky-100 hover:bg-sky-200 active:bg-sky-300 font-display font-bold text-lg text-sky-800 border-2 border-sky-300 cursor-pointer"
+                >
+                    Sang phải ➡️
+                </button>
+            </div>
+
+            <div class="mt-3">
+                <button
+                    type="button"
+                    id="btn-exit-minigame"
+                    class="text-xs sm:text-sm font-bold text-slate-500 hover:text-sky-600 underline cursor-pointer"
+                >
+                    ← Quay lại bảng chọn quà
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MÀN 5: KHÚC CUỐI THIÊN NHIÊN HOA LÁ HẸ ==================== -->
+    <section id="screen-ending" class="hidden fixed inset-0 bg-nature-ending z-40 flex flex-col items-center justify-between p-4 sm:p-8 overflow-hidden">
+        <!-- Mặt trời & Mây trời -->
+        <div class="w-full flex justify-between items-start pointer-events-none">
+            <div class="text-5xl sm:text-7xl animate-pulse">☀️</div>
+            <div class="flex gap-4 text-4xl sm:text-6xl opacity-90 animate-float">
+                <span>☁️</span>
+                <span class="mt-4">☁️</span>
+            </div>
+        </div>
+
+        <!-- Bươm bướm bay lượn -->
+        <div class="absolute top-1/4 left-8 sm:left-16 text-3xl sm:text-4xl animate-flutter pointer-events-none">🦋</div>
+        <div class="absolute top-1/3 right-10 sm:right-20 text-3xl sm:text-4xl animate-flutter pointer-events-none" style="animation-delay: 1.5s;">🦋</div>
+
+        <!-- Khung thông điệp kết màn -->
+        <div class="relative z-10 max-w-xl w-full bg-white/92 backdrop-blur-md border-4 border-emerald-400 rounded-3xl p-6 sm:p-10 shadow-2xl text-center animate-card-pop">
+            <div class="text-4xl sm:text-5xl mb-3">🌿🌼🍀🌻🌱</div>
+            <h1 class="font-display text-2xl sm:text-4xl font-bold text-emerald-700 leading-snug mb-4">
+                "Mình mệt qs nên hết rồik!!! Happy 14th birthday nha bà!!!"
+            </h1>
+            <p class="text-slate-600 font-semibold text-sm sm:text-base mb-6">
+                Chúc bạn Khang tuổi 14 luôn vui vẻ, tươi xanh như cây cảnh hoa lá hẹ nha! 🛵💨
+            </p>
+            <button
+                type="button"
+                id="btn-replay-all"
+                class="py-3 px-7 rounded-2xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-display font-bold text-base sm:text-lg shadow-lg shadow-emerald-300 transition-all cursor-pointer"
+            >
+                Chơi lại từ đầu ↻
+            </button>
+        </div>
+
+        <!-- Cảnh cây cảnh thiên nhiên hoa lá hẹ dưới chân màn hình -->
+        <div class="w-full max-w-4xl flex items-end justify-around text-5xl sm:text-7xl select-none pointer-events-none -mb-2">
+            <span class="animate-sway">🌳</span>
+            <span class="text-4xl sm:text-5xl animate-sway" style="animation-delay: 0.4s;">🌷</span>
+            <span class="animate-sway" style="animation-delay: 0.8s;">🌿</span>
+            <span class="text-4xl sm:text-6xl animate-sway" style="animation-delay: 0.2s;">🌻</span>
+            <span class="animate-sway" style="animation-delay: 1s;">🌲</span>
+            <span class="text-4xl sm:text-5xl animate-sway" style="animation-delay: 0.6s;">🌼</span>
+            <span class="animate-sway" style="animation-delay: 0.3s;">🌴</span>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ==================== 1. ÂM THANH TỰ TẠO BẰNG WEB AUDIO API ====================
+            let audioCtx = null;
+            function playTone(freqs, duration = 0.14, type = 'sine') {
+                try {
+                    if (!audioCtx) {
+                        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                        if (AudioContextClass) audioCtx = new AudioContextClass();
+                    }
+                    if (!audioCtx) return;
+                    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                    const now = audioCtx.currentTime;
+                    freqs.forEach((freq, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = type;
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+                        gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + duration);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.07);
+                        osc.stop(now + idx * 0.07 + duration);
+                    });
+                } catch (e) {
+                    // Bỏ qua nếu trình duyệt chặn âm thanh
+                }
+            }
+
+            // ==================== 2. HIỆU ỨNG PHÁO GIẤY & HOA LÁ TỰ VẼ ====================
+            const confettiCanvas = document.getElementById('confetti-canvas');
+            const cCtx = confettiCanvas.getContext('2d');
+            let particles = [];
+            let confettiAnimId = null;
+
+            function resizeConfettiCanvas() {
+                confettiCanvas.width = window.innerWidth;
+                confettiCanvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeConfettiCanvas);
+            resizeConfettiCanvas();
+
+            function launchConfetti(mode = 'confetti') {
+                const colors = ['#0284c7', '#38bdf8', '#facc15', '#fb7185', '#4ade80', '#a855f7'];
+                const flowerEmojis = ['🌸', '🌺', '🌻', '🌼', '🍃', '🌿'];
+                for (let i = 0; i < 65; i++) {
+                    particles.push({
+                        x: Math.random() * confettiCanvas.width,
+                        y: -20 - Math.random() * 120,
+                        vx: (Math.random() - 0.5) * 5,
+                        vy: 2.5 + Math.random() * 4.5,
+                        size: mode === 'flowers' ? 20 + Math.random() * 10 : 7 + Math.random() * 6,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        emoji: flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)],
+                        mode: mode,
+                        rot: Math.random() * Math.PI * 2,
+                        vRot: (Math.random() - 0.5) * 0.15
+                    });
+                }
+                if (!confettiAnimId) renderConfetti();
+            }
+
+            function renderConfetti() {
+                cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.rot += p.vRot;
+
+                    cCtx.save();
+                    cCtx.translate(p.x, p.y);
+                    cCtx.rotate(p.rot);
+                    if (p.mode === 'flowers') {
+                        cCtx.font = `${p.size}px Arial`;
+                        cCtx.textAlign = 'center';
+                        cCtx.fillText(p.emoji, 0, 0);
+                    } else {
+                        cCtx.fillStyle = p.color;
+                        cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+                    }
+                    cCtx.restore();
+
+                    if (p.y > confettiCanvas.height + 40) {
+                        particles.splice(i, 1);
+                    }
+                }
+                if (particles.length > 0) {
+                    confettiAnimId = requestAnimationFrame(renderConfetti);
+                } else {
+                    confettiAnimId = null;
+                }
+            }
+
+            // ==================== 3. QUẢN LÝ CHUYỂN MÀN & TIẾN ĐỘ ====================
+            const state = {
+                cardRead: false,
+                cakeEaten: false,
+                slicesLeft: 5,
+                openedGifts: new Set()
+            };
+
+            const screens = [
+                'screen-lock',
+                'screen-main',
+                'screen-card',
+                'screen-cake',
+                'screen-gifts',
+                'screen-minigame',
+                'screen-ending'
+            ];
+
+            function showScreen(id) {
+                screens.forEach(s => {
+                    const el = document.getElementById(s);
+                    if (el) {
+                        if (s === id) {
+                            el.classList.remove('hidden');
+                        } else {
+                            el.classList.add('hidden');
+                        }
+                    }
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function updateProgressUI() {
+                let done = 0;
+                if (state.cardRead) {
+                    done++;
+                    document.getElementById('badge-card').classList.remove('hidden');
+                }
+                if (state.cakeEaten) {
+                    done++;
+                    document.getElementById('badge-cake').classList.remove('hidden');
+                }
+                if (state.openedGifts.size >= 5) {
+                    done++;
+                    document.getElementById('badge-gifts').classList.remove('hidden');
+                }
+
+                document.getElementById('progress-text').textContent = `${done} / 3 hoàn thành`;
+                document.getElementById('progress-bar').style.width = `${(done / 3) * 100}%`;
+
+                if (done === 3) {
+                    const unlockBox = document.getElementById('minigame-unlock-box');
+                    if (unlockBox.classList.contains('hidden')) {
+                        unlockBox.classList.remove('hidden');
+                        launchConfetti('confetti');
+                    }
+                }
+            }
+
+            // ==================== 4. LOGIC MÀN HÌNH KHÓA MẬT KHẨU ====================
+            const lockCard = document.getElementById('screen-lock');
+            const passInput = document.getElementById('pass-input');
+            const passError = document.getElementById('pass-error');
+            const btnUnlock = document.getElementById('btn-unlock');
+
+            const funnyHints = [
+                "Sai pass rồi bà ơi, thử nhập ngày sinh nhật xem nào! 🙈",
+                "Ủa alo nhập gì zậy? Gợi ý: 23 tháng 11 nha! 🎂",
+                "Nhập đúng 4 số 2311 là mở cửa liền à bạn ei! 🐱"
+            ];
+            let hintIdx = 0;
+            let isUnlocking = false;
+
+            function handleUnlockAttempt(isAutoCheck = false) {
+                if (isUnlocking) return;
+                const cleanVal = passInput.value.replace(/\D/g, '');
+                passInput.value = cleanVal;
+
+                if (cleanVal === '2311') {
+                    isUnlocking = true;
+                    passError.classList.add('hidden');
+                    playTone([523.25, 659.25, 783.99, 1046.5], 0.22, 'triangle');
+                    launchConfetti('confetti');
+                    setTimeout(() => {
+                        showScreen('screen-main');
+                        isUnlocking = false;
+                    }, 220);
+                    return;
+                }
+
+                // Nếu tự động kiểm tra khi gõ chưa đủ 4 số thì chưa báo lỗi
+                if (isAutoCheck && cleanVal.length < 4) {
+                    passError.classList.add('hidden');
+                    return;
+                }
+
+                // Báo lỗi khi bấm nút hoặc đã gõ đủ 4 số mà sai
+                playTone([220, 180], 0.18, 'sawtooth');
+                passError.textContent = funnyHints[hintIdx % funnyHints.length];
+                hintIdx++;
+                passError.classList.remove('hidden');
+
+                lockCard.classList.remove('animate-shake');
+                void lockCard.offsetWidth;
+                lockCard.classList.add('animate-shake');
+                passInput.value = '';
+                passInput.focus();
+            }
+
+            // Tự động mở khóa ngay khi nhập đủ "2311"
+            passInput.addEventListener('input', () => {
+                handleUnlockAttempt(true);
+            });
+
+            // Hỗ trợ phím Enter
+            passInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleUnlockAttempt(false);
+                }
+            });
+
+            // Nút Mở khóa
+            btnUnlock.addEventListener('click', () => {
+                handleUnlockAttempt(false);
+            });
+
+            // Bàn phím số ảo 0-9
+            document.querySelectorAll('.keypad-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    playTone([600], 0.06, 'sine');
+                    if (passInput.value.length < 4) {
+                        passInput.value += btn.getAttribute('data-key');
+                        handleUnlockAttempt(true);
+                    }
+                });
+            });
+
+            document.getElementById('keypad-clear').addEventListener('click', () => {
+                playTone([400], 0.06, 'sine');
+                passInput.value = '';
+                passError.classList.add('hidden');
+            });
+
+            document.getElementById('keypad-back').addEventListener('click', () => {
+                playTone([450], 0.06, 'sine');
+                passInput.value = passInput.value.slice(0, -1);
+                passError.classList.add('hidden');
+            });
+
+            // ==================== 5. ĐIỀU HƯỚNG CÁC MÀN QUÀ ====================
+            document.getElementById('menu-btn-card').addEventListener('click', () => {
+                playTone([523, 659], 0.12);
+                state.cardRead = true;
+                updateProgressUI();
+                showScreen('screen-card');
+            });
+
+            document.getElementById('menu-btn-cake').addEventListener('click', () => {
+                playTone([587, 740], 0.12);
+                showScreen('screen-cake');
+            });
+
+            document.getElementById('menu-btn-gifts').addEventListener('click', () => {
+                playTone([659, 880], 0.12);
+                showScreen('screen-gifts');
+            });
+
+            document.querySelectorAll('.btn-back-menu').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    playTone([493, 392], 0.1);
+                    updateProgressUI();
+                    showScreen('screen-main');
+                });
+            });
+
+            // ==================== 6. LOGIC MÀN BÁNH KEM DÂU TÂY ====================
+            const cakeStage = document.getElementById('cake-stage');
+            const biteWords = ['Măm măm! 😋', 'Ngon quá! 🍓', 'Chóp chép! 🍰', 'Thêm miếng nữa! ✨', 'Sạch bách! 🎉'];
+
+            cakeStage.addEventListener('click', (e) => {
+                if (state.slicesLeft <= 0) return;
+
+                const sliceEl = document.getElementById(`cake-slice-${state.slicesLeft}`);
+                if (sliceEl) {
+                    sliceEl.style.opacity = '0';
+                    sliceEl.style.transform = 'scale(0.8) translateY(-10px)';
+                }
+
+                // Tạo hiệu ứng chữ măm măm bay lên tại vị trí chạm
+                const rect = cakeStage.getBoundingClientRect();
+                const x = e.clientX ? e.clientX - rect.left : rect.width / 2;
+                const y = e.clientY ? e.clientY - rect.top : rect.height / 2;
+
+                const toast = document.createElement('div');
+                toast.className = 'toast-float font-display font-bold text-rose-500 text-lg drop-shadow-sm';
+                toast.style.left = `${x}px`;
+                toast.style.top = `${y}px`;
+                toast.textContent = biteWords[5 - state.slicesLeft] || 'Măm măm! 😋';
+                cakeStage.appendChild(toast);
+                setTimeout(() => toast.remove(), 850);
+
+                playTone([440 + (5 - state.slicesLeft) * 65, 660], 0.1, 'triangle');
+                state.slicesLeft--;
+                document.getElementById('slices-left-num').textContent = state.slicesLeft;
+
+                if (state.slicesLeft === 0) {
+                    state.cakeEaten = true;
+                    updateProgressUI();
+                    setTimeout(() => {
+                        document.getElementById('cake-finished-banner').classList.remove('hidden');
+                        document.getElementById('btn-reset-cake').classList.remove('hidden');
+                        document.getElementById('cake-instruction').textContent = 'Hoàn thành xuất sắc! 🌸';
+                        playTone([523.25, 659.25, 783.99, 1046.5], 0.25, 'triangle');
+                        launchConfetti('flowers');
+                    }, 300);
+                }
+            });
+
+            document.getElementById('btn-reset-cake').addEventListener('click', () => {
+                state.slicesLeft = 5;
+                document.getElementById('slices-left-num').textContent = '5';
+                document.getElementById('cake-finished-banner').classList.add('hidden');
+                document.getElementById('btn-reset-cake').classList.add('hidden');
+                document.getElementById('cake-instruction').textContent = 'Bấm vào bánh kem để ăn từng miếng nha! 😋';
+                for (let i = 1; i <= 5; i++) {
+                    const el = document.getElementById(`cake-slice-${i}`);
+                    if (el) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'none';
+                    }
+                }
+            });
+
+            // ==================== 7. LOGIC MÀN 5 GÓI QUÀ ====================
+            document.querySelectorAll('.gift-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const giftId = card.getAttribute('data-gift');
+                    if (state.openedGifts.has(giftId)) return;
+
+                    state.openedGifts.add(giftId);
+                    card.querySelector('.gift-cover').classList.add('hidden');
+                    const content = card.querySelector('.gift-content');
+                    content.classList.remove('hidden');
+                    content.classList.add('flex');
+
+                    playTone([587.33, 880], 0.16, 'triangle');
+                    document.getElementById('gifts-opened-num').textContent = state.openedGifts.size;
+                    updateProgressUI();
+
+                    if (state.openedGifts.size === 5) {
+                        launchConfetti('confetti');
+                    }
+                });
+            });
+
+            // ==================== 8. LOGIC MINIGAME HỨNG AURA & ROBUX (15 GIÂY) ====================
+            const gameCanvas = document.getElementById('aura-game-canvas');
+            const gameContainer = document.getElementById('game-container');
+            const gCtx = gameCanvas.getContext('2d');
+
+            let gameRunning = false;
+            let gameAnimId = null;
+            let gameTimerInterval = null;
+            let gameScore = 0;
+            let timeLeft = 15;
+            let playerRatioX = 0.5;
+            let fallingItems = [];
+            let gamePopups = [];
+
+            const dropPool = [
+                { emoji: '💎', text: '+15 Robux', pts: 15, weight: 3 },
+                { emoji: '💯', text: '+20 Điểm Hóa', pts: 20, weight: 2 },
+                { emoji: '🍀', text: '+10 May mắn', pts: 10, weight: 4 },
+                { emoji: '💣', text: '-15 Úi bom!', pts: -15, weight: 2 }
+            ];
+
+            document.getElementById('btn-open-minigame').addEventListener('click', () => {
+                playTone([523, 659, 784], 0.14);
+                showScreen('screen-minigame');
+            });
+
+            document.getElementById('btn-exit-minigame').addEventListener('click', () => {
+                stopGame();
+                showScreen('screen-main');
+            });
+
+            function updatePlayerFromClientX(clientX) {
+                const rect = gameContainer.getBoundingClientRect();
+                const ratio = (clientX - rect.left) / rect.width;
+                playerRatioX = Math.max(0.1, Math.min(0.9, ratio));
+            }
+
+            gameContainer.addEventListener('mousemove', (e) => {
+                if (gameRunning) updatePlayerFromClientX(e.clientX);
+            });
+            gameContainer.addEventListener('touchmove', (e) => {
+                if (gameRunning && e.touches.length > 0) {
+                    updatePlayerFromClientX(e.touches[0].clientX);
+                }
+            }, { passive: true });
+            gameContainer.addEventListener('touchstart', (e) => {
+                if (gameRunning && e.touches.length > 0) {
+                    updatePlayerFromClientX(e.touches[0].clientX);
+                }
+            }, { passive: true });
+
+            document.getElementById('btn-move-left').addEventListener('click', () => {
+                playerRatioX = Math.max(0.1, playerRatioX - 0.14);
+            });
+            document.getElementById('btn-move-right').addEventListener('click', () => {
+                playerRatioX = Math.min(0.9, playerRatioX + 0.14);
+            });
+
+            function startGame() {
+                gameCanvas.width = gameContainer.clientWidth;
+                gameCanvas.height = gameContainer.clientHeight;
+
+                gameScore = 0;
+                timeLeft = 15;
+                fallingItems = [];
+                gamePopups = [];
+                gameRunning = true;
+
+                document.getElementById('game-score').textContent = '0';
+                document.getElementById('game-timer').textContent = '15';
+                document.getElementById('game-overlay').classList.add('hidden');
+                document.getElementById('btn-to-ending').classList.add('hidden');
+
+                clearInterval(gameTimerInterval);
+                gameTimerInterval = setInterval(() => {
+                    timeLeft--;
+                    document.getElementById('game-timer').textContent = timeLeft;
+                    if (timeLeft <= 0) {
+                        endGame();
+                    }
+                }, 1000);
+
+                let frameCount = 0;
+                function loop() {
+                    if (!gameRunning) return;
+                    gCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+                    frameCount++;
+                    if (frameCount % 24 === 0) {
+                        const expanded = [];
+                        dropPool.forEach(item => {
+                            for (let i = 0; i < item.weight; i++) expanded.push(item);
+                        });
+                        const chosen = expanded[Math.floor(Math.random() * expanded.length)];
+                        fallingItems.push({
+                            x: 24 + Math.random() * (gameCanvas.width - 48),
+                            y: -25,
+                            speed: 3 + Math.random() * 2.5,
+                            ...chosen
+                        });
+                    }
+
+                    // Vẽ giỏ bé mèo hứng quà
+                    const px = playerRatioX * gameCanvas.width;
+                    const py = gameCanvas.height - 36;
+
+                    gCtx.fillStyle = '#0284c7';
+                    gCtx.strokeStyle = '#ffffff';
+                    gCtx.lineWidth = 3;
+                    gCtx.beginPath();
+                    gCtx.roundRect(px - 38, py - 12, 76, 34, 12);
+                    gCtx.fill();
+                    gCtx.stroke();
+
+                    gCtx.font = 'bold 13px Quicksand, sans-serif';
+                    gCtx.fillStyle = '#ffffff';
+                    gCtx.textAlign = 'center';
+                    gCtx.fillText('🐱 KHANG', px, py + 9);
+
+                    // Cập nhật vật phẩm rơi
+                    for (let i = fallingItems.length - 1; i >= 0; i--) {
+                        const it = fallingItems[i];
+                        it.y += it.speed;
+
+                        gCtx.font = '28px Arial';
+                        gCtx.textAlign = 'center';
+                        gCtx.fillText(it.emoji, it.x, it.y);
+
+                        if (it.y >= py - 18 && it.y <= py + 24 && Math.abs(it.x - px) <= 44) {
+                            gameScore = Math.max(0, gameScore + it.pts);
+                            document.getElementById('game-score').textContent = gameScore;
+
+                            gamePopups.push({
+                                text: it.text,
+                                x: it.x,
+                                y: py - 22,
+                                color: it.pts > 0 ? '#059669' : '#e11d48',
+                                alpha: 1
+                            });
+
+                            if (it.pts > 0) {
+                                playTone([659, 880], 0.08);
+                            } else {
+                                playTone([196, 150], 0.15, 'sawtooth');
+                            }
+
+                            fallingItems.splice(i, 1);
+                            continue;
+                        }
+
+                        if (it.y > gameCanvas.height + 30) {
+                            fallingItems.splice(i, 1);
+                        }
+                    }
+
+                    // Hiệu ứng cộng trừ điểm
+                    for (let i = gamePopups.length - 1; i >= 0; i--) {
+                        const p = gamePopups[i];
+                        p.y -= 1.4;
+                        p.alpha -= 0.03;
+                        gCtx.save();
+                        gCtx.globalAlpha = Math.max(0, p.alpha);
+                        gCtx.font = 'bold 15px Fredoka, sans-serif';
+                        gCtx.fillStyle = p.color;
+                        gCtx.fillText(p.text, p.x, p.y);
+                        gCtx.restore();
+                        if (p.alpha <= 0) gamePopups.splice(i, 1);
+                    }
+
+                    gameAnimId = requestAnimationFrame(loop);
+                }
+                loop();
+            }
+
+            function stopGame() {
+                gameRunning = false;
+                clearInterval(gameTimerInterval);
+                cancelAnimationFrame(gameAnimId);
+            }
+
+            function endGame() {
+                stopGame();
+                playTone([523.25, 659.25, 783.99, 1046.5], 0.25, 'triangle');
+                launchConfetti('confetti');
+
+                document.getElementById('game-overlay').classList.remove('hidden');
+                document.getElementById('game-overlay-icon').textContent = '👑🔥';
+                document.getElementById('game-overlay-title').textContent = `Tổng kết: ${gameScore} Aura!`;
+                document.getElementById('game-overlay-desc').textContent =
+                    'Đỉnh nóc kịch trần luôn Khang ơi! Bấm tiếp tục để xem đoạn kết nha!';
+                document.getElementById('btn-start-game').textContent = 'Chơi lại ↻';
+                document.getElementById('btn-to-ending').classList.remove('hidden');
+            }
+
+            document.getElementById('btn-start-game').addEventListener('click', startGame);
+
+            document.getElementById('btn-to-ending').addEventListener('click', () => {
+                playTone([523, 659, 784, 987, 1046], 0.3, 'triangle');
+                showScreen('screen-ending');
+                launchConfetti('flowers');
+            });
+
+            // ==================== 9. CHƠI LẠI TỪ ĐẦU ====================
+            document.getElementById('btn-replay-all').addEventListener('click', () => {
+                playTone([523, 659], 0.15);
+                showScreen('screen-main');
+            });
+        });
+    </script>
+</body>
+</html>
